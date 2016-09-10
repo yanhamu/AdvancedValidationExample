@@ -36,11 +36,10 @@ namespace AdvancedValidationExample.Controllers
 
             if (post == null)
                 return Request.CreateResponse(HttpStatusCode.NotFound);
-            if (post.SiteId == siteId)
-                return Request.CreateResponse(HttpStatusCode.OK);
+            if (post.SiteId != siteId)
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
 
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
-            // / not found / not authorized depending on context...
+            return Request.CreateResponse(HttpStatusCode.OK, post);
         }
 
         [Route]
@@ -49,8 +48,6 @@ namespace AdvancedValidationExample.Controllers
         {
             if (post.SiteId != siteId)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
-
-            // or alternatively just post.SiteId = siteId
 
             return Request.CreateResponse(HttpStatusCode.OK, repository.Save(post));
         }
@@ -62,12 +59,15 @@ namespace AdvancedValidationExample.Controllers
             if (post.SiteId != siteId)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
-            // or alternatively just post.SiteId = siteId
-
             if (post.Id != postId)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
-            var exists = repository.GetById(postId);
+            var existingPost = repository.GetById(postId);
+            if (existingPost == null)
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+
+            if (existingPost.SiteId != siteId)
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
 
             return Request.CreateResponse(HttpStatusCode.OK, repository.Update(post));
         }
