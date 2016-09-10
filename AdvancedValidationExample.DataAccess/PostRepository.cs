@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using AdvancedValidationExample.DataAccess.Model;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AdvancedValidationExample.DataAccess
