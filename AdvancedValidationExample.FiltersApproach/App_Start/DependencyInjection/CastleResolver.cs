@@ -1,26 +1,28 @@
-﻿using Castle.MicroKernel.Lifestyle;
-using Castle.Windsor;
+﻿using Castle.Windsor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http.Dependencies;
 
-namespace AdvancedValidationExample.App_Start.DependencyInjection
+namespace AdvancedValidationExample.FiltersApproach.App_Start.DependencyInjection
 {
-    public class CastleScope : IDependencyScope
+    public class CastleResolver : IDependencyResolver
     {
         private readonly IWindsorContainer container;
-        private readonly IDisposable scope;
 
-        public CastleScope(IWindsorContainer container)
+        public CastleResolver(IWindsorContainer container)
         {
             this.container = container;
-            this.scope = container.BeginScope();
+        }
+
+        public IDependencyScope BeginScope()
+        {
+            return new CastleScope(container);
         }
 
         public void Dispose()
         {
-            scope.Dispose();
+            container.Dispose();
         }
 
         public object GetService(Type serviceType)

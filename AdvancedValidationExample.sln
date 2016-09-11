@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedValidationExample.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedValidationExample.DataAccess", "AdvancedValidationExample.DataAccess\AdvancedValidationExample.DataAccess.csproj", "{54A81017-8F45-4744-BADA-86EE61647AF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedValidationExample.ActionFiltersApproach", "AdvancedValidationExample.ActionFiltersApproach\AdvancedValidationExample.ActionFiltersApproach.csproj", "{2F53D0E4-9961-4C9B-9DB1-F84B804D9AEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedValidationExample.FiltersApproach", "AdvancedValidationExample.FiltersApproach\AdvancedValidationExample.FiltersApproach.csproj", "{E75D6FF6-ADC8-4341-8522-FF5B15FABC9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{54A81017-8F45-4744-BADA-86EE61647AF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54A81017-8F45-4744-BADA-86EE61647AF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54A81017-8F45-4744-BADA-86EE61647AF9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2F53D0E4-9961-4C9B-9DB1-F84B804D9AEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F53D0E4-9961-4C9B-9DB1-F84B804D9AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F53D0E4-9961-4C9B-9DB1-F84B804D9AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F53D0E4-9961-4C9B-9DB1-F84B804D9AEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E75D6FF6-ADC8-4341-8522-FF5B15FABC9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E75D6FF6-ADC8-4341-8522-FF5B15FABC9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E75D6FF6-ADC8-4341-8522-FF5B15FABC9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E75D6FF6-ADC8-4341-8522-FF5B15FABC9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
