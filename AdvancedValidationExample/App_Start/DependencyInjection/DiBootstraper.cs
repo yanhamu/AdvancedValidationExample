@@ -3,9 +3,9 @@ using Castle.Windsor;
 using Castle.Windsor.Installer;
 using System.Web.Http;
 
-namespace AdvancedValidationExample.ActionFiltersApproach.App_Start.DependencyInjection
+namespace AdvancedValidationExample.App_Start.DependencyInjection
 {
-    public static class DiBootstrapper
+    public static class DiBootsraper
     {
         public static IWindsorContainer Bootstrap(HttpConfiguration configuration)
         {

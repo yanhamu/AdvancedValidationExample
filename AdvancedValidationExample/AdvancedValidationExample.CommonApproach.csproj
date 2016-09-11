@@ -95,7 +95,7 @@
   <ItemGroup>
     <Compile Include="App_Start\DependencyInjection\CastleResolver.cs" />
     <Compile Include="App_Start\DependencyInjection\CastleScope.cs" />
-    <Compile Include="App_Start\DependencyInjection\DiBoostraper.cs" />
+    <Compile Include="App_Start\DependencyInjection\DiBootstraper.cs" />
     <Compile Include="App_Start\DependencyInjection\Installers\Controllers.cs" />
     <Compile Include="App_Start\DependencyInjection\Installers\Repositories.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />

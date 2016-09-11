@@ -11,7 +11,7 @@ namespace AdvancedValidationExample
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            container = DiBoostraper.Bootstrap(GlobalConfiguration.Configuration);
+            container = DiBootsraper.Bootstrap(GlobalConfiguration.Configuration);
         }
     }
 }
