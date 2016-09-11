@@ -6,24 +6,31 @@ using System.Web.Http.Filters;
 
 namespace AdvancedValidationExample.FiltersApproach.Filters
 {
-    public class SiteFilterAttribute : ActionFilterAttribute
+    public class SitePostExists : ActionFilterAttribute
     {
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
-            var siteRepository = (ISiteRepository)actionContext
+            var postRepository = (IPostRepository)actionContext
                 .ControllerContext
                 .Configuration
                 .DependencyResolver
-                .GetService(typeof(ISiteRepository));
+                .GetService(typeof(IPostRepository));
 
-            if (actionContext.ActionArguments.ContainsKey("siteId"))
+            if (ContainsArgument(actionContext, "siteId")
+                && ContainsArgument(actionContext, "postId"))
             {
                 var siteId = (int)actionContext.ActionArguments["siteId"];
+                var postId = (int)actionContext.ActionArguments["postId"];
 
-                if (siteRepository.GetById(siteId) == null)
+                if (postRepository.GetById(postId).SiteId != siteId)
                     actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.BadRequest);
             }
             base.OnActionExecuting(actionContext);
+        }
+
+        private bool ContainsArgument(HttpActionContext context, string key)
+        {
+            return context.ActionArguments.ContainsKey(key);
         }
     }
 }

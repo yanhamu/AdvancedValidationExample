@@ -59,7 +59,7 @@ namespace AdvancedValidationExample.Controllers
             if (post.SiteId != siteId)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
-            if (post.Id != postId)
+            if (post.SiteId != siteId || postId != post.Id)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
             var existingPost = repository.GetById(postId);

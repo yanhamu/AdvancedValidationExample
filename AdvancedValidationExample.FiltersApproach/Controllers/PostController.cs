@@ -8,6 +8,7 @@ using System.Web.Http;
 namespace AdvancedValidationExample.FiltersApproach.Controllers
 {
     [RoutePrefix("api/sites/{siteId}/posts")]
+    [SiteExists]
     public class PostController : ApiController
     {
         private readonly IPostRepository repository;
@@ -21,26 +22,18 @@ namespace AdvancedValidationExample.FiltersApproach.Controllers
 
         [Route]
         [HttpGet]
-        [SiteFilter]
         public HttpResponseMessage Get(int siteId)
         {
-            if (siteRepository.GetById(siteId) == null)
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-
             return Request.CreateResponse(HttpStatusCode.OK, repository.GetBySiteId(siteId));
         }
 
         [Route("{postId:int}")]
         [HttpGet]
+        [PostExists]
+        [SitePostExists]
         public HttpResponseMessage Get(int postId, int siteId)
         {
             var post = repository.GetById(postId);
-
-            if (post == null)
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            if (post.SiteId != siteId)
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-
             return Request.CreateResponse(HttpStatusCode.OK, post);
         }
 
@@ -56,19 +49,11 @@ namespace AdvancedValidationExample.FiltersApproach.Controllers
 
         [Route("{postId:int}")]
         [HttpPut]
+        [PostExists]
+        [SitePostExists]
         public HttpResponseMessage Put(int siteId, int postId, [FromBody]Post post)
         {
-            if (post.SiteId != siteId)
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-
-            if (post.Id != postId)
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-
-            var existingPost = repository.GetById(postId);
-            if (existingPost == null)
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-
-            if (existingPost.SiteId != siteId)
+            if (post.SiteId != siteId || postId != post.Id)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
             return Request.CreateResponse(HttpStatusCode.OK, repository.Update(post));
@@ -76,15 +61,11 @@ namespace AdvancedValidationExample.FiltersApproach.Controllers
 
         [Route("{postId:int}")]
         [HttpDelete]
+        [PostExists]
+        [SitePostExists]
         public HttpResponseMessage Delete(int siteId, int postId)
         {
             var post = repository.GetById(postId);
-
-            if (post == null)
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            if (post.SiteId != siteId)
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-
             var removed = repository.Remove(post);
             return Request.CreateResponse(HttpStatusCode.NoContent);
         }
