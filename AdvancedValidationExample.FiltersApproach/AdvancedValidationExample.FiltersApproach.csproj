@@ -100,6 +100,7 @@
     <Compile Include="App_Start\DependencyInjection\Installers\Repositories.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Filters\SiteFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -1,5 +1,6 @@
 ﻿using AdvancedValidationExample.DataAccess;
 using AdvancedValidationExample.DataAccess.Model;
+using AdvancedValidationExample.FiltersApproach.Filters;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -20,6 +21,7 @@ namespace AdvancedValidationExample.FiltersApproach.Controllers
 
         [Route]
         [HttpGet]
+        [SiteFilter]
         public HttpResponseMessage Get(int siteId)
         {
             if (siteRepository.GetById(siteId) == null)
